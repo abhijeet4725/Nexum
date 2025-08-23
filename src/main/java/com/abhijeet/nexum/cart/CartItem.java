@@ -1,20 +1,21 @@
 package com.abhijeet.nexum.cart;
 
 import com.abhijeet.nexum.product.Product;
-import com.abhijeet.nexum.product.enums.ProductStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "cart_item")
+@Table(name = "cart_items",
+        uniqueConstraints = @UniqueConstraint(name = "uk_cart_product", columnNames = {"cart_id", "product_id"}))
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class CartItem {
 
@@ -24,12 +25,16 @@ public class CartItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id", nullable = false)
-    @JsonIgnore
     private Cart cart;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @Column()
+    @Column(name = "quantity", nullable = false)
     private Integer quantity;
+
+    @CreatedDate
+    @Column(name = "added_at", nullable = false, updatable = false)
+    private LocalDateTime addedAt;
 }

@@ -1,12 +1,8 @@
 package com.abhijeet.nexum.User;
 
-import com.abhijeet.nexum.User.enums.AddressStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -16,10 +12,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "addresses")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Address {
 
@@ -27,7 +21,7 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
@@ -47,12 +41,11 @@ public class Address {
     @Column(name = "pincode", nullable = false)
     private String pincode;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "address_status", nullable = false)
-    private AddressStatus addressStatus;
+    @Column(name = "is_default", nullable = false)
+    private boolean isDefault = false;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate

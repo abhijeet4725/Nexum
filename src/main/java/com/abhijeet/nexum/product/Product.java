@@ -3,12 +3,10 @@ package com.abhijeet.nexum.product;
 import com.abhijeet.nexum.User.User;
 import com.abhijeet.nexum.cart.CartItem;
 import com.abhijeet.nexum.product.enums.ProductStatus;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.abhijeet.nexum.review.Review;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -31,6 +29,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    // Seller
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
@@ -39,7 +38,7 @@ public class Product {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "price", nullable = false)
@@ -48,20 +47,19 @@ public class Product {
     @Column(name = "discount", nullable = false)
     private Double discount;
 
-    // TODO
     // Category
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     @JsonIgnore
     private Category category;
 
-    // CartItems:
-    @OneToOne(mappedBy = "product",cascade = CascadeType.ALL)
-    private CartItem cartItem;
-
-    // ProductImage
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, orphanRemoval = true)
+    // Product Images
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ProductImage> productImageList = new ArrayList<>();
+
+    // Product Reviews
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Review> reviews = new ArrayList<>();
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
@@ -69,9 +67,11 @@ public class Product {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private ProductStatus status;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cartItems = new ArrayList<>();
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
