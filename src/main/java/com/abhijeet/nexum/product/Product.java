@@ -1,6 +1,7 @@
 package com.abhijeet.nexum.product;
 
 import com.abhijeet.nexum.User.User;
+import com.abhijeet.nexum.cart.CartItem;
 import com.abhijeet.nexum.product.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -47,6 +50,19 @@ public class Product {
 
     // TODO
     // Category
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    @JsonIgnore
+    private Category category;
+
+    // CartItems:
+    @OneToOne(mappedBy = "product",cascade = CascadeType.ALL)
+    private CartItem cartItem;
+
+    // ProductImage
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductImage> productImageList = new ArrayList<>();
+
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
@@ -61,5 +77,4 @@ public class Product {
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
-
 }

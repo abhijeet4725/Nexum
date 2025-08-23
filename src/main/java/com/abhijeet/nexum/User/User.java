@@ -1,6 +1,8 @@
 package com.abhijeet.nexum.User;
 
 import com.abhijeet.nexum.User.enums.Role;
+import com.abhijeet.nexum.cart.Cart;
+import com.abhijeet.nexum.order.Order;
 import com.abhijeet.nexum.product.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -59,8 +61,14 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
+
     // cart
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Cart cart;
     // order
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
     // CreditWallet
     // Review
 
