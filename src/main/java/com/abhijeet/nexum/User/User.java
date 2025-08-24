@@ -3,8 +3,10 @@ package com.abhijeet.nexum.User;
 import com.abhijeet.nexum.User.enums.Role;
 import com.abhijeet.nexum.cart.Cart;
 import com.abhijeet.nexum.order.Order;
+import com.abhijeet.nexum.payment.Payment;
 import com.abhijeet.nexum.product.Product;
 import com.abhijeet.nexum.review.Review;
+import com.abhijeet.nexum.wallet.CreditWallet;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -69,6 +71,9 @@ public class User {
     // Reviews Written
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private CreditWallet wallet;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
