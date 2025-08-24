@@ -1,4 +1,4 @@
-package com.abhijeet.nexum.User;
+package com.abhijeet.nexum.user.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

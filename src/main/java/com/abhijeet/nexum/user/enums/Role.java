@@ -1,4 +1,4 @@
-package com.abhijeet.nexum.User.enums;
+package com.abhijeet.nexum.user.enums;
 
 public enum Role {
     CUSTOMER, SELLER

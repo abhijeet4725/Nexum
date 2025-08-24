@@ -1,12 +1,11 @@
-package com.abhijeet.nexum.User;
+package com.abhijeet.nexum.user.domain;
 
-import com.abhijeet.nexum.User.enums.Role;
-import com.abhijeet.nexum.cart.Cart;
-import com.abhijeet.nexum.order.Order;
-import com.abhijeet.nexum.payment.Payment;
-import com.abhijeet.nexum.product.Product;
-import com.abhijeet.nexum.review.Review;
-import com.abhijeet.nexum.wallet.CreditWallet;
+import com.abhijeet.nexum.user.enums.Role;
+import com.abhijeet.nexum.cart.domain.Cart;
+import com.abhijeet.nexum.order.domain.Order;
+import com.abhijeet.nexum.product.domain.Product;
+import com.abhijeet.nexum.review.domain.Review;
+import com.abhijeet.nexum.wallet.domain.CreditWallet;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;

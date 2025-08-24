@@ -1,6 +1,6 @@
-package com.abhijeet.nexum.payment;
+package com.abhijeet.nexum.payment.domain;
 
-import com.abhijeet.nexum.order.Order;
+import com.abhijeet.nexum.order.domain.Order;
 import com.abhijeet.nexum.payment.enums.PaymentGateway;
 import com.abhijeet.nexum.payment.enums.PaymentMethod;
 import com.abhijeet.nexum.payment.enums.PaymentStatus;

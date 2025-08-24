@@ -1,6 +1,6 @@
-package com.abhijeet.nexum.cart;
+package com.abhijeet.nexum.cart.domain;
 
-import com.abhijeet.nexum.product.Product;
+import com.abhijeet.nexum.product.domain.Product;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

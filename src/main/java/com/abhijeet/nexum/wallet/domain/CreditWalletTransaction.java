@@ -1,4 +1,4 @@
-package com.abhijeet.nexum.wallet;
+package com.abhijeet.nexum.wallet.domain;
 
 import com.abhijeet.nexum.wallet.enums.TransactionType;
 import jakarta.persistence.*;

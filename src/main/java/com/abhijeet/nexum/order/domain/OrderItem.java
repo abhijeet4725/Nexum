@@ -1,6 +1,6 @@
-package com.abhijeet.nexum.order;
+package com.abhijeet.nexum.order.domain;
 
-import com.abhijeet.nexum.product.Product;
+import com.abhijeet.nexum.product.domain.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

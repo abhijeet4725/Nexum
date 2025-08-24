@@ -1,4 +1,4 @@
-package com.abhijeet.nexum.product;
+package com.abhijeet.nexum.product.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

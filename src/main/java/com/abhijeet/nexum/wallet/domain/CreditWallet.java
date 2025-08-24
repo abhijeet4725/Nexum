@@ -1,12 +1,11 @@
-package com.abhijeet.nexum.wallet;
+package com.abhijeet.nexum.wallet.domain;
 
-import com.abhijeet.nexum.User.User;
+import com.abhijeet.nexum.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.bytecode.enhance.spi.EnhancementInfo;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

@@ -1,9 +1,9 @@
-package com.abhijeet.nexum.product;
+package com.abhijeet.nexum.product.domain;
 
-import com.abhijeet.nexum.User.User;
-import com.abhijeet.nexum.cart.CartItem;
+import com.abhijeet.nexum.user.domain.User;
+import com.abhijeet.nexum.cart.domain.CartItem;
 import com.abhijeet.nexum.product.enums.ProductStatus;
-import com.abhijeet.nexum.review.Review;
+import com.abhijeet.nexum.review.domain.Review;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;

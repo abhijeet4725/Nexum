@@ -1,5 +1,8 @@
-package com.abhijeet.nexum.product;
+package com.abhijeet.nexum.review.domain;
 
+import com.abhijeet.nexum.user.domain.User;
+import com.abhijeet.nexum.product.domain.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,27 +13,38 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "product_images")
+@Table(name = "reviews")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class ProductImage {
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    // Reviewer
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    private User user;
+
+    // Reviewed product
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
+    @JsonIgnore
     private Product product;
 
-    @Column(name = "url", nullable = false)
-    private String url;
+    @Column(name = "rating", nullable = false)
+    private Integer rating; // 1–5 scale
+
+    @Column(name = "comment", columnDefinition = "TEXT")
+    private String comment;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
