@@ -4,12 +4,14 @@ import com.abhijeet.nexum.User.Address;
 import com.abhijeet.nexum.User.User;
 import com.abhijeet.nexum.order.enums.OrderStatus;
 //import com.abhijeet.nexum.payment.Payment;
+import com.abhijeet.nexum.payment.Payment;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,25 +42,25 @@ public class Order {
     @JoinColumn(name = "delivery_address_id", nullable = false)
     private Address deliveryAddress;
 
-//    // Payment (1-1)
-//    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-//    private Payment payment;
+    // Payment (1-1)
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Payment payment;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status", nullable = false)
     private OrderStatus status;
 
     @Column(name = "sub_price", nullable = false)
-    private Double subPrice;
+    private BigDecimal subPrice;
 
     @Column(name = "discount_amount")
-    private Double discountAmount;
+    private BigDecimal discountAmount;
 
     @Column(name = "applied_credits")
-    private Double appliedCredits;
+    private BigDecimal appliedCredits;
 
     @Column(name = "total_price", nullable = false)
-    private Double totalPrice;
+    private BigDecimal totalPrice;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
