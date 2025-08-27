@@ -1,4 +1,4 @@
-package com.abhijeet.nexum.auth.util;
+package com.abhijeet.nexum.auth.security;
 
 import io.jsonwebtoken.*;
 import jakarta.annotation.PostConstruct;

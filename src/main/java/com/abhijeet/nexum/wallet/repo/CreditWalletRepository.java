@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface CreditWalletRepository extends JpaRepository<UUID, CreditWallet> {
+public interface CreditWalletRepository extends JpaRepository<CreditWallet, UUID> {
 }

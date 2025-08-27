@@ -14,9 +14,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -45,8 +43,9 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "role", nullable = false)
-    private Role role;
+    private List<Role> role;
 
     @Column(name = "profile_image")
     private String profileImageUrl;
