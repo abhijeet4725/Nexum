@@ -2,7 +2,6 @@ package com.abhijeet.nexum.user.service;
 
 import com.abhijeet.nexum.user.domain.User;
 import com.abhijeet.nexum.user.repo.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
