@@ -1,5 +1,6 @@
 package com.abhijeet.nexum.auth.dtos;
 
+import com.abhijeet.nexum.user.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -9,6 +10,8 @@ import lombok.Data;
 public class RegisterRequestDto {
     @NotBlank
     private String name;
+
+    private Role role;
 
     @NotBlank
     @Email

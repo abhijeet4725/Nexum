@@ -63,7 +63,9 @@ public class AuthServiceImpl implements AuthService {
         User user = authMapper.toEntity(registerRequestDto);
 
         user.setPassword(encoder.encode(registerRequestDto.getPassword()));
-        if (user.getRole() == null) {
+        if (registerRequestDto.getRole() != null) {
+            user.setRole(registerRequestDto.getRole());
+        } else {
             user.setRole(Role.CUSTOMER);
         }
         repository.save(user);
