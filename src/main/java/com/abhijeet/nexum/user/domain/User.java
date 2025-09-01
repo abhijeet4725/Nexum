@@ -23,6 +23,7 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@Builder
 public class User {
 
     @Id
@@ -35,7 +36,7 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "phone_number", nullable = false, unique = true)
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
 
     @Column(name = "password", nullable = false)
@@ -43,9 +44,8 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "role", nullable = false)
-    private List<Role> role;
+    private Role role;
 
     @Column(name = "profile_image")
     private String profileImageUrl;
@@ -80,4 +80,10 @@ public class User {
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    public User(String email, String password, Role role){
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 }
