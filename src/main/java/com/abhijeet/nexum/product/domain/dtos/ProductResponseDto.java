@@ -1,27 +1,16 @@
 package com.abhijeet.nexum.product.domain.dtos;
 
-import jakarta.validation.constraints.*;
 import lombok.Data;
-import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
-public class CreateProductRequestDto {
-
-    @NotBlank
+public class ProductResponseDto {
+    private UUID id;
     private String title;
-
     private String description;
-
-    @NotNull
-    @Positive
     private BigDecimal price;
-
-    @DecimalMin(value = "0.0", inclusive = true)
     private BigDecimal discount;
-
-    @NotNull
     private UUID categoryId;
 }

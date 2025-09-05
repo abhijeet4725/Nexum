@@ -1,11 +1,13 @@
 package com.abhijeet.nexum.product.service;
 
-import com.abhijeet.nexum.product.domain.dtos.CreateProductRequestDto;
-import com.abhijeet.nexum.product.domain.dtos.CreateProductResponseDto;
-import com.abhijeet.nexum.product.domain.dtos.UpdateProductRequestDto;
-import com.abhijeet.nexum.product.domain.dtos.UpdateProductResponseDto;
+import com.abhijeet.nexum.product.domain.dtos.*;
+
+import java.util.List;
+import java.util.UUID;
 
 public interface ProductService {
-    CreateProductResponseDto addProduct(CreateProductRequestDto createProductDto);
-    UpdateProductResponseDto updateProduct(UpdateProductRequestDto updateProductRequestDto);
+    ProductResponseDto addProduct(CreateProductRequestDto createProductDto);
+    ProductResponseDto updateProduct(UpdateProductRequestDto updateProductRequestDto);
+    List<ProductResponseDto> getAllProducts();
+    void deleteProduct(UUID productId);
 }
